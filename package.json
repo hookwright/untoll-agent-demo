@@ -1,0 +1,19 @@
+{
+  "name": "untoll-agent-quickstart",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Give an autonomous agent a scoped session key, watch it do the allowed thing and get stopped from doing the forbidden thing. Non-custodial, EIP-7702, real contracts.",
+  "scripts": {
+    "demo": "node scripts/demo.mjs",
+    "demo:fork": "node scripts/demo.mjs --fork",
+    "verify:bytecode": "node scripts/verify-bytecode.mjs",
+    "build:contracts": "node scripts/build-contracts.mjs"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "viem": "^2.55.0"
+  }
+}
