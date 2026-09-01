@@ -1,0 +1,24 @@
+{
+  "_comment": "Human-reviewed anchor for `npm run verify:bytecode`. NOTHING IN THE BUILD WRITES THIS FILE. build:contracts regenerates artifacts/ from contracts/, so without this pin the verification compares the tree against itself and cannot fail. The two code hashes are taken AFTER stripping the CBOR metadata trailer, so recompiling the same source at a different path does not move them, but a different contract does. Review every value before committing a change. Measure with `npm run pin:print`, which prints and never writes.",
+  "upstream": {
+    "note": "the canonical source these contracts are a byte copy of",
+    "repo": "untoll-agents (private canonical source)",
+    "commit": "3e82c60df17f5deb8406683c2d77c014b6994191"
+  },
+  "reviewed": {
+    "by": "hookwright",
+    "at": "2026-09-01"
+  },
+  "contracts": {
+    "SessionKeyDelegate": {
+      "source_sha256": "3a015be2b1d728817aaeb46f6a2d87c9455e3170df3c9becaed4a5cf3efe14fb",
+      "creation_exec_keccak": "0x8cb7f18e2950603c433fce17a88e68eadcce625d4e788f58a186916e62baf381",
+      "runtime_exec_keccak": "0x1adfd20848ac6f6d398ebe826c1206c09c99f7fce50e7e2eec0522c4fd093900"
+    },
+    "MockTarget": {
+      "source_sha256": "b8e936cb3e66ad4d0b2ca97626bdc4884fef05dea9d8dc3b736c3a2c5f2a4243",
+      "creation_exec_keccak": "0xbd980fd6bf7bbe6c0b789ea604f0e525a818bb96b6c7c7952dc2fec6208faea1",
+      "runtime_exec_keccak": "0xde67a88985566b4954a09d1293f4bd336f31419209b4d3bbed3c962231635abd"
+    }
+  }
+}

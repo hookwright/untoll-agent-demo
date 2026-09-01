@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
 
-/// A stand-in for a DeFi-style target contract an agent might call. No real funds, test-only.
+/// A stand-in for a launch-hook-adjacent contract an agent might call. No real funds, test-only.
 contract MockTarget {
     uint256 public pings;
     uint256 public received;

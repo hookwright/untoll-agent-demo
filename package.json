@@ -8,7 +8,8 @@
     "demo": "node scripts/demo.mjs",
     "demo:fork": "node scripts/demo.mjs --fork",
     "verify:bytecode": "node scripts/verify-bytecode.mjs",
-    "build:contracts": "node scripts/build-contracts.mjs"
+    "build:contracts": "node scripts/build-contracts.mjs",
+    "pin:print": "node scripts/verify-bytecode.mjs --print"
   },
   "engines": {
     "node": ">=18"

@@ -89,8 +89,16 @@ try {
   const now = Number((await pub.getBlock()).timestamp);
   const scope = {
     owner: owner.address, sessionKey: session.address,
-    expiry: BigInt(now + 86400), perTxCap: parseEther("1"), perEpochCap: parseEther("2"), epochLength: 3600n,
+    expiry: BigInt(now + 86400), perTxCap: parseEther("1"), perEpochCap: parseEther("2"),
+    // TKT-0433, the AMOUNT lane. perTxCap and perEpochCap meter the native `value` field, and an
+    // ERC-20 call carries value == 0, so on a token they bound nothing. perTxUnitCap and
+    // perEpochUnitCap meter the decoded amount ARGUMENT of any selector named in amountSelectors.
+    // This scope allowlists only swap(), which grants no standing allowance, so the lane is left
+    // unarmed. Allowlisting approve() with these at zero is refused on chain, by design.
+    perTxUnitCap: 0n, perEpochUnitCap: 0n,
+    epochLength: 3600n,
     targets: [targetContract], selectors: [swapSel], recipients: [owner.address], recipientSelectors: [swapSel], recipientArgs: [4n],
+    amountSelectors: [], amountArgs: [],
   };
   await wait(await ownerWc.sendTransaction({ to: owner.address, data: encodeFunctionData({ abi: delegateArt.abi, functionName: "initialize", args: [scope] }) }));
   console.log(`  the session key may: call ${dim("swap(...)")} on ${short(targetContract)}, output to the owner only, ≤ 1 ETH/tx, before expiry.`);

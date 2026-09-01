@@ -50,8 +50,14 @@ Optional:
 
 - `npm run demo:fork` runs the same demo on a local fork of Robinhood testnet (chain 46630), so the
   chain id and state are the real testnet's while execution stays on your machine.
-- `npm run verify:bytecode` recompiles the contract from `contracts/` and confirms the executable code
-  the demo deploys is the real thing, not a stand-in.
+- `npm run verify:bytecode` checks this build against `EXPECTED.json`, a reviewed set of hashes that
+  the build pipeline never writes. Four legs, all of which must pass: the source file hashes to the
+  pinned value, the shipped artifact's executable code hashes to the pinned value, that artifact is
+  the compile of the source in `contracts/`, and the code actually deployed on a local chain hashes
+  to the pinned value. The last one is the same number the demo prints as `delegate runtime hash`.
+  A missing pin is a refusal, not a skip.
+- `npm run pin:print` measures those values and prints them for review. It never writes the pin:
+  moving an anchor is a human act, on purpose.
 
 ## What just happened
 
